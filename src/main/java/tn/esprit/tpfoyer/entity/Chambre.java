@@ -16,7 +16,7 @@ import java.util.Set;
 @ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Chambre {
-
+    //comment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long idChambre;
