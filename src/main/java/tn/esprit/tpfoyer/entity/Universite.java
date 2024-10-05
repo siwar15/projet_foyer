@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Universite {
 
+    //test
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long idUniversite;
