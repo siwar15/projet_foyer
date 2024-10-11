@@ -27,6 +27,8 @@ public class Etudiant {
     long cinEtudiant;
     Date dateNaissance;
 
+    //commantaire pour changer commit
+
     @ManyToMany(mappedBy = "etudiants")
     Set<Reservation> reservations;
 
