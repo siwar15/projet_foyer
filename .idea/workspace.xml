@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8aa44837-b106-454e-a587-4b273beb7ebc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tn/esprit/tpfoyer/ReservationServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
+    <list default="true" id="8aa44837-b106-454e-a587-4b273beb7ebc" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -142,7 +138,7 @@
       <workItem from="1728306787297" duration="643000" />
       <workItem from="1728851683750" duration="189000" />
       <workItem from="1728852891690" duration="229000" />
-      <workItem from="1728853626103" duration="1542000" />
+      <workItem from="1728853626103" duration="1798000" />
     </task>
     <servers />
   </component>
