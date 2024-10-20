@@ -103,6 +103,15 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <url>http://localhost:8081/repository/maven-releases/</url>
+                    <repositoryId>nexus-releases</repositoryId>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <distributionManagement>
