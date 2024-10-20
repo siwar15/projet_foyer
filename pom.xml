@@ -116,7 +116,7 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>nexus-releases</id>
+            <id>deploymentRepo</id>
             <url>http://nexus:8081/repository/maven-releases/</url>
         </repository>
 
