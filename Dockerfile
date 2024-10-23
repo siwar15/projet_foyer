@@ -9,7 +9,7 @@ WORKDIR /app
 ARG NEXUS_URL=http://your-nexus-server:8081/repository/maven-releases
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
-ARG VERSION=5.0.0-SNAPSHOT-1
+ARG VERSION=latest
 ARG JAR_NAME=${ARTIFACT_ID}-${VERSION}.jar
 
 # Set up Nexus credentials if needed
