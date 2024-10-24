@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Download the JAR file from Nexus
 # Replace the URL, repository, and credentials as needed
-ARG NEXUS_URL=http://your-nexus-server:8081/repository/maven-releases
+ARG NEXUS_URL=http://nexus:8081/repository/maven-releases
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
 ARG VERSION=latest
