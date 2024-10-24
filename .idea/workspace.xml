@@ -7,7 +7,6 @@
     <list default="true" id="8aa44837-b106-454e-a587-4b273beb7ebc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,7 +170,8 @@
       <workItem from="1729773655985" duration="54000" />
       <workItem from="1729773919172" duration="50000" />
       <workItem from="1729775061954" duration="40000" />
-      <workItem from="1729775433371" duration="112000" />
+      <workItem from="1729775433371" duration="129000" />
+      <workItem from="1729776187973" duration="490000" />
     </task>
     <servers />
   </component>

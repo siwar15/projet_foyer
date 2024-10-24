@@ -20,13 +20,12 @@ RUN apt-get update && apt-get install -y curl && \
     echo "Nexus URL: $NEXUS_URL" && \
     echo "Nexus Username: $NEXUS_USERNAME" && \
     echo "Downloading JAR from Nexus..." && \
-    RUN echo "Downloading from URL: $NEXUS_URL/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/$JAR_NAME" \
+    echo "Downloading from URL: $NEXUS_URL/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/$JAR_NAME" && \
     curl -u $NEXUS_USERNAME:$NEXUS_PASSWORD -o $JAR_NAME "$NEXUS_URL/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/$JAR_NAME" || { echo "Failed to download JAR"; exit 1; } && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-
 
 # Expose the application's port
 EXPOSE 8080
 
-# Set the command to run the application
-CMD ["java", "-jar", "$JAR_NAME"]
+# Set the command to run the application (using shell form for variable expansion)
+CMD java -jar "$JAR_NAME"
