@@ -1,5 +1,5 @@
 # Use an official OpenJDK image as the base image
-FROM openjdk:17-jre-slim
+FROM openjdk:17-jdk-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 ARG NEXUS_URL=http://172.20.0.2:8081/repository/maven-releases/
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
-ARG VERSION=release-01
+ARG VERSION=release-02
 ARG JAR_NAME=${ARTIFACT_ID}-${VERSION}.jar
 
 # Set up Nexus credentials if needed
