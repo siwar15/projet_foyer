@@ -17,12 +17,13 @@ ARG NEXUS_PASSWORD
 
 # Install curl and download the JAR file from Nexus
 RUN apt-get update && apt-get install -y curl && \
-    echo "Nexus URL: $NEXUS_URL" && \
-    echo "Nexus Username: $NEXUS_USERNAME" && \
+    echo "Testing direct connection to Nexus..." && \
+    curl -I http://admin:root@172.20.0.2:8081/repository/maven-releases/ || { echo "Unable to reach Nexus"; exit 1; } && \
     echo "Downloading JAR from Nexus..." && \
-    echo "Downloading from URL: $NEXUS_URL/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/$JAR_NAME" && \
-    curl -u $NEXUS_USERNAME:$NEXUS_PASSWORD -o $JAR_NAME "$NEXUS_URL/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/$JAR_NAME" || { echo "Failed to download JAR"; exit 1; } && \
+    curl -u nexus_username:nexus_password -o ${ARTIFACT_ID}-${VERSION}.jar "http://172.20.0.2:8081/repository/maven-releases/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/${ARTIFACT_ID}-${VERSION}.jar" || { echo "Failed to download JAR"; exit 1; } && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
 
 # Expose the application's port
 EXPOSE 8080
