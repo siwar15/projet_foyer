@@ -8,7 +8,7 @@ WORKDIR /app
 ARG NEXUS_URL=http://172.20.0.2:8081/repository/maven-releases/
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
-ARG VERSION=release-02
+ARG VERSION=release-03
 ARG JAR_NAME=${ARTIFACT_ID}-${VERSION}.jar
 
 # Set up Nexus credentials if needed
@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y curl && \
     echo "Nexus URL: $NEXUS_URL" && \
     echo "Nexus Username: $NEXUS_USERNAME" && \
     echo "Downloading JAR from Nexus..." && \
+    RUN echo "Downloading from URL: $NEXUS_URL/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/$JAR_NAME" \
     curl -u $NEXUS_USERNAME:$NEXUS_PASSWORD -o $JAR_NAME "$NEXUS_URL/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/$JAR_NAME" || { echo "Failed to download JAR"; exit 1; } && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
