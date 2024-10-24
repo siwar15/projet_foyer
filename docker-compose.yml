@@ -1,0 +1,36 @@
+
+  version: "3.8"
+
+  services:
+    mysqldb:
+      image: mysql:5.7
+      restart: unless-stopped
+      environment:
+        - MYSQL_ROOT_PASSWORD=  # Mettez un mot de passe pour l'utilisateur root
+        - MYSQL_DATABASE=tp_foyer_db         # Remplacez par le nom de votre base de données
+      ports:
+        - 3306:3306
+      volumes:
+        - db:/var/lib/mysql
+
+    tp-foyer-app:
+      depends_on:
+        - mysqldb
+      image: ranimahmadi/tp-foyer:5.0.0
+      # Utilisez l'image Docker que vous avez créée
+      restart: on-failure
+      ports:
+        - 8089:8089  # Remappez le port 8089 comme défini dans votre Dockerfile
+      environment:
+        SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/tp_foyer_db?createDatabaseIfNotExist=true",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "root_password",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+      stdin_open: true
+      tty: true
+
+  volumes:
+    db:
