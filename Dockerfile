@@ -16,14 +16,13 @@ ARG NEXUS_USERNAME
 ARG NEXUS_PASSWORD
 
 # Install curl and download the JAR file from Nexus
-RUN apt-get update && apt-get install -y curl && \
+RUN apt-get update && apt-get install -y curl iputils-ping && \
     echo "Testing direct connection to Nexus..." && \
-    curl -I http://admin:root@172.20.0.2:8081/repository/maven-releases/ || { echo "Unable to reach Nexus"; exit 1; } && \
+    ping -c 4 172.20.0.2 || { echo "Unable to reach Nexus"; exit 1; } && \
+    curl -I "${NEXUS_URL}" || { echo "Unable to reach Nexus"; exit 1; } && \
     echo "Downloading JAR from Nexus..." && \
-    curl -u nexus_username:nexus_password -o ${ARTIFACT_ID}-${VERSION}.jar "http://172.20.0.2:8081/repository/maven-releases/$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/${ARTIFACT_ID}-${VERSION}.jar" || { echo "Failed to download JAR"; exit 1; } && \
+    curl -u ${NEXUS_USERNAME}:${NEXUS_PASSWORD} -o ${ARTIFACT_ID}-${VERSION}.jar "${NEXUS_URL}$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/${ARTIFACT_ID}-${VERSION}.jar" || { echo "Failed to download JAR"; exit 1; } && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
-
-
 
 # Expose the application's port
 EXPOSE 8080
