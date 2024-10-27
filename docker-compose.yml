@@ -2,10 +2,10 @@ version: "3.8"
 
 services:
   mysqldb:
-    image: mariadb:10.4 # Utilisez mariadb:10.4 si vous préférez une meilleure compatibilité avec MariaDBDialect
+    image: mysql:5.7  # ou mariaDB pour une meilleure compatibilité avec MariaDBDialect
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ROOT_PASSWORD=  # Pas de mot de passe défini ici
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE=tp_foyer_db
     ports:
@@ -24,7 +24,7 @@ services:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url": "jdbc:mysql://mysqldb:3306/tp_foyer_db?createDatabaseIfNotExist=true",
         "spring.datasource.username": "root",
-        "spring.datasource.password": null,
+        "spring.datasource.password": "",
         "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MariaDBDialect",
         "spring.jpa.hibernate.ddl-auto": "update"
       }'
