@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   mysqldb:
-    image: mysql:5.7  # Utilisez mariadb:10.4 si vous préférez une meilleure compatibilité avec MariaDBDialect
+    image: mariadb:10.4 # Utilisez mariadb:10.4 si vous préférez une meilleure compatibilité avec MariaDBDialect
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=
