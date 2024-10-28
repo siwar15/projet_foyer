@@ -3,6 +3,8 @@ version: '3.8'
 services:
   backend:
     image: mouadhs/reservation_management:latest   # Use the pre-built image from Docker Hub
+    networks:
+      - jenkins-sonarqube-network
     environment:
       - DATABASE_URL=jdbc:mysql://db:3306/db?createDatabaseIfNotExist=true
       - DATABASE_USERNAME=root
@@ -14,6 +16,8 @@ services:
 
   db:
     image: mysql:8.0
+    networks:
+      - jenkins-sonarqube-network
     environment:
       MYSQL_ROOT_PASSWORD: root  # Set the MySQL root password
       MYSQL_DATABASE: reservation_db      # Create a database on startup
