@@ -21,11 +21,11 @@ RUN apt-get update && apt-get install -y curl iputils-ping && \
     ping -c 4 172.20.0.2 || { echo "Unable to reach Nexus"; exit 1; } && \
     curl -I "${NEXUS_URL}" || { echo "Unable to reach Nexus"; exit 1; } && \
     echo "Downloading JAR from Nexus..." && \
-    curl -u ${NEXUS_USERNAME}:${NEXUS_PASSWORD} -o ${ARTIFACT_ID}-${VERSION}.jar "${NEXUS_URL}$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/${ARTIFACT_ID}-${VERSION}.jar" || { echo "Failed to download JAR"; exit 1; } && \
+    curl -u ${NEXUS_USERNAME}:${NEXUS_PASSWORD} -o "${JAR_NAME}" "${NEXUS_URL}$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/${JAR_NAME}" || { echo "Failed to download JAR"; exit 1; } && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Expose the application's port
 EXPOSE 8080
 
-# Set the command to run the application (using shell form for variable expansion)
-CMD java -jar "$JAR_NAME"
+# Set the command to run the application (using exec form for better signal handling)
+CMD ["java", "-jar", "${JAR_NAME}"]
