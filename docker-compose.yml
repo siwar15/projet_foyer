@@ -15,7 +15,7 @@ services:
   tp-foyer-app:
     depends_on:
       - mysqldb
-    image: youssefbenlahouel/tp-foyer:5.0.0  # Utilisez l'image Docker que vous avez créée
+    image: siwarahmadi/tp-foyer:5.0.0  # Utilisez l'image Docker que vous avez créée
     restart: on-failure
     ports:
       - 8089:8089  # Remappez le port 8089 comme défini dans votre Dockerfile
