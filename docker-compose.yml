@@ -6,9 +6,9 @@ services:
     networks:
       - jenkins-sonarqube-network  # Use the network defined below
     environment:
-      DATABASE_URL: jdbc:mysql://db:3306/reservation_db?createDatabaseIfNotExist=true
+      DATABASE_URL: jdbc:mysql://db:3306/db?createDatabaseIfNotExist=true
       DATABASE_USERNAME: root
-      DATABASE_PASSWORD: root_password
+      DATABASE_PASSWORD: root
     ports:
       - "8082:8080"  # Expose the backend on port 8080
     depends_on:
@@ -20,7 +20,7 @@ services:
       - jenkins-sonarqube-network  # Use the network defined below
     environment:
       MYSQL_ROOT_PASSWORD: root  # Set the MySQL root password
-      MYSQL_DATABASE: reservation_db  # Create a database on startup
+      MYSQL_DATABASE: db  # Create a database on startup
     ports:
       - "3306:3306"  # Expose the database on port 3306
     volumes:
