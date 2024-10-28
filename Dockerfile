@@ -24,6 +24,8 @@ RUN apt-get update && apt-get install -y curl iputils-ping && \
     curl -u ${NEXUS_USERNAME}:${NEXUS_PASSWORD} -o ${ARTIFACT_ID}-${VERSION}.jar "${NEXUS_URL}$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/${ARTIFACT_ID}-${VERSION}.jar" || { echo "Failed to download JAR"; exit 1; } && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN ls -l | grep "${JAR_NAME}" || { echo "JAR file not found"; exit 1; }
+
 # Expose the application's port
 EXPOSE 8080
 
