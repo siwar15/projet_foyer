@@ -3,6 +3,8 @@ version: '3.8'
 services:
   backend:
     image: mouadhs/reservation_management:latest   # Use the pre-built image from Docker Hub
+    restart: on-failure
+
     networks:
       - jenkins-sonarqube-network  # Use the network defined below
     environment:
