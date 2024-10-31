@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=
-      - MYSQL_DATABASE=timesheet_db
+      - MYSQL_DATABASE=tp-foyer_db
     ports:
       - 3306:3306
     volumes:
