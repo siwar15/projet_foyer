@@ -57,6 +57,7 @@
 
     <build>
         <plugins>
+            <!-- Définir le repository pour le déploiement 
                <plugin>
                <groupId>org.jacoco</groupId>
                <artifactId>jacoco-maven-plugin</artifactId>
@@ -75,7 +76,7 @@
                        </goals>
                    </execution>
                </executions>
-           </plugin>
+           </plugin> -->
            <plugin>
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-maven-plugin</artifactId>
