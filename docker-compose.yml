@@ -12,6 +12,7 @@ services:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
+
   app-tp-foyer:
     depends_on:
       - mysqldb
@@ -30,5 +31,14 @@ services:
     stdin_open: true
     tty: true
 
+  mysql-exporter:
+    image: prom/mysqld-exporter
+    environment:
+      - DATA_SOURCE_NAME=root@(mysqldb:3306)/tp-foyer_db
+    ports:
+      - 9104:9104
+    depends_on:
+      - mysqldb
+
 volumes:
-  db :
+  db:
