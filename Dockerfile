@@ -8,7 +8,7 @@ WORKDIR /app
 ARG NEXUS_URL=http://172.20.0.2:8081/repository/maven-releases/
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
-ARG VERSION=release-04
+ARG VERSION=release-05
 ARG JAR_NAME=${ARTIFACT_ID}-${VERSION}.jar
 
 # Set up Nexus credentials if needed
@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y curl iputils-ping && \
 RUN ls -l | grep "${JAR_NAME}" || { echo "JAR file not found"; exit 1; }
 
 # Expose the application's port
-EXPOSE 8080
+EXPOSE 8089
 
 # Set the command to run the application (using shell form for variable expansion)
 CMD ["java", "-jar", "/app/tp-foyer-release-03.jar"]
