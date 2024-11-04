@@ -30,4 +30,4 @@ RUN ls -l | grep "${JAR_NAME}" || { echo "JAR file not found"; exit 1; }
 EXPOSE 8089
 
 # Set the command to run the application (using shell form for variable expansion)
-CMD ["java", "-jar", "/app/tp-foyer-release-03.jar"]
+CMD ["java", "-jar", "/app/tp-foyer-release-05.jar"]
