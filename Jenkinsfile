@@ -26,3 +26,10 @@ pipeline {
         }
     }
 }
+
+tee -a /etc/prometheus/prometheus.yml <<EOF
+  - job_name: backend
+    metrics_path: prometheus
+    static_configs:
+      - targets: ['172.20.0.6:8080']
+EOF

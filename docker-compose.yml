@@ -2,33 +2,40 @@ version: '3.8'
 
 services:
   backend:
-    image: mouadhs/reservation_management:latest   # Use the pre-built image from Docker Hub
+    image: mouadhs/reservation_management:latest
+    restart: on-failure
     networks:
-      - jenkins-sonarqube-network  # Use the network defined below
+      - jenkins-sonarqube-network
     environment:
-      DATABASE_URL: jdbc:mysql://db:3306/db?createDatabaseIfNotExist=true
-      DATABASE_USERNAME: root
-      DATABASE_PASSWORD: root
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://db:3306/db?createDatabaseIfNotExist=true",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "root",
+        "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQLDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    stdin_open: true
+    tty: true
     ports:
-      - "8082:8080"  # Expose the backend on port 8080
+      - "8089:8089"
     depends_on:
       - db
 
   db:
     image: mysql:8.0
     networks:
-      - jenkins-sonarqube-network  # Use the network defined below
+      - jenkins-sonarqube-network
     environment:
-      MYSQL_ROOT_PASSWORD: root  # Set the MySQL root password
-      MYSQL_DATABASE: db  # Create a database on startup
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db
     ports:
-      - "3306:3306"  # Expose the database on port 3306
+      - "3306:3306"
     volumes:
-      - mysql_data:/var/lib/mysql  # Persist data across container restarts
+      - mysql_data:/var/lib/mysql
 
 networks:
-  jenkins-sonarqube-network:  # Define the network here
+  jenkins-sonarqube-network:
     external: true
 
 volumes:
-  mysql_data:  # Named volume for MySQL data persistence
+  mysql_data:
