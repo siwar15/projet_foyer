@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Define arguments for Nexus
-ARG NEXUS_URL=http://172.20.0.3:8081/repository/maven-releases/
+ARG NEXUS_URL=http://172.20.0.2:8081/repository/maven-releases/
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
-ARG VERSION=release-nej7a
+ARG VERSION=release-03
 ARG JAR_NAME=${ARTIFACT_ID}-${VERSION}.jar
 
 # Set up Nexus credentials if needed
@@ -18,7 +18,7 @@ ARG NEXUS_PASSWORD
 # Install curl and download the JAR file from Nexus
 RUN apt-get update && apt-get install -y curl iputils-ping && \
     echo "Testing direct connection to Nexus..." && \
-    ping -c 4 172.20.0.3 || { echo "Unable to reach Nexus"; exit 1; } && \
+    ping -c 4 172.20.0.2 || { echo "Unable to reach Nexus"; exit 1; } && \
     curl -I "${NEXUS_URL}" || { echo "Unable to reach Nexus"; exit 1; } && \
     echo "Downloading JAR from Nexus..." && \
     curl -u ${NEXUS_USERNAME}:${NEXUS_PASSWORD} -o ${ARTIFACT_ID}-${VERSION}.jar "${NEXUS_URL}$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/${ARTIFACT_ID}-${VERSION}.jar" || { echo "Failed to download JAR"; exit 1; } && \
@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y curl iputils-ping && \
 RUN ls -l | grep "${JAR_NAME}" || { echo "JAR file not found"; exit 1; }
 
 # Expose the application's port
-EXPOSE 8089
+EXPOSE 8080
 
 # Set the command to run the application (using shell form for variable expansion)
-CMD ["java", "-jar", "/app/tp-foyer-release-nej7a.jar"]
+CMD ["java", "-jar", "/app/tp-foyer-release-03.jar"]
