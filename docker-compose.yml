@@ -15,6 +15,7 @@ services:
           "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQLDialect",
           "spring.jpa.hibernate.ddl-auto": "update"
         }
+
     stdin_open: true
     tty: true
     ports:
