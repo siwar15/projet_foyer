@@ -51,6 +51,10 @@
             <version>2.1.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
 
 
     </dependencies>
@@ -75,7 +79,7 @@
                        </goals>
                    </execution>
                </executions>
-           </plugin> 
+           </plugin>
            <plugin>
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-maven-plugin</artifactId>
