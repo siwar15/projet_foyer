@@ -35,9 +35,9 @@ services:
 
   prometheus:
     image: prom/prometheus
-    command: "--config.file=/etc/prometheus/custom-prometheus.yml"
+    command: "--config.file=/etc/prometheus/prometheus.yml"
     volumes:
-      - /var/jenkins_home/workspace/MouadhSaadaoui5Arctic7/prometheus.yml:/etc/prometheus/custom-prometheus.yml
+      - /var/jenkins_home/workspace/MouadhSaadaoui5Arctic7/prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     networks:
