@@ -33,26 +33,9 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-  prometheus:
-    image: prom/prometheus
-    command: "--config.file=/etc/custom-prometheus.yml"
-    volumes:
-      - /var/jenkins_home/workspace/MouadhSaadaoui5Arctic7/custom-prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-    networks:
-      - jenkins-sonarqube-network
-
-
-  grafana:
-    image: grafana/grafana
-    ports:
-      - "3000:3000"
-    networks:
-      - jenkins-sonarqube-network
-
 networks:
   jenkins-sonarqube-network:
+    external: true
 
 volumes:
   mysql_data:
