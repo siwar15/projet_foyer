@@ -24,7 +24,7 @@ RUN curl -u ${NEXUS_USERNAME}:${NEXUS_PASSWORD} -o ${JAR_NAME} "${NEXUS_URL}$(ec
 RUN ls -l | grep "${JAR_NAME}" || { echo "Fichier JAR non trouvé"; exit 1; }
 
 # Exposer le port de l'application
-EXPOSE 8082
+EXPOSE 8089
 
 # Définir la commande d'entrée
 CMD ["java", "-jar", "${JAR_NAME}"]
