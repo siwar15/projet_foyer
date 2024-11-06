@@ -9,7 +9,6 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=tp_foyer_db
       - innodb_force_recovery=1
-
     ports:
       - 3306:3306
     volumes:
@@ -32,6 +31,29 @@ services:
       }'
     stdin_open: true
     tty: true
+
+  mysqld_exporter:
+    image: prom/mysqld-exporter:latest
+    environment:
+      - DATA_SOURCE_NAME=root:@tcp(mysqldb:3306)  # Connexion à MySQL sans mot de passe
+    ports:
+      - "9104:9104"  # Port sur lequel les métriques sont exposées
+    depends_on:
+      - mysqldb
+
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Fichier de config Prometheus à créer
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=grafana  # Définir le mot de passe admin de Grafana
+    ports:
+      - "3000:3000"
 
 volumes:
   db:
