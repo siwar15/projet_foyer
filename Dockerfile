@@ -15,7 +15,7 @@ ARG NEXUS_PASSWORD=Nexus/siwar1
 # Installer curl et télécharger le fichier JAR depuis Nexus avec authentification
 RUN apk add --no-cache curl iputils && \
     echo "Test de la connexion directe à Nexus..." && \
-    ping -c 4 192.168.149.129 || { echo "Impossible d'atteindre Nexus"; exit 1; } && \
+    ping -c 4 192.168.137.168 || { echo "Impossible d'atteindre Nexus"; exit 1; } && \
     echo "Vérification du chemin du dépôt..." && \
     curl -I "${NEXUS_URL}$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/" || { echo "Chemin du dépôt non trouvé"; exit 1; } && \
     echo "Téléchargement du JAR depuis Nexus..." && \
