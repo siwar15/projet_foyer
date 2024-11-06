@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/reservation")
-@CrossOrigin(origins = "http://localhost:3001") 
+@CrossOrigin(origins = "http://frontend:3001") 
 
 public class ReservationRestController {
 
