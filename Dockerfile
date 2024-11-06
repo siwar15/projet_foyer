@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-alpine
 
 # Définir le répertoire de travail
-WORKDIR /app
+
 
 # Définir les arguments pour Nexus
 ARG NEXUS_URL=http://nexus:8081/repository/maven-releases/
@@ -25,4 +25,4 @@ EXPOSE 8089
 
 
 # Lancer l'application
-CMD ["java", "-jar", "/app/tp-foyer-5.0.0.jar"]
+CMD ["java", "-jar", "tp-foyer-5.0.0.jar"]
