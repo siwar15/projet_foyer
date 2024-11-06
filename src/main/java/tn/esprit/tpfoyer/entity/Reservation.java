@@ -19,7 +19,7 @@ public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    String idReservation;
+    Integer idReservation;
 
 
     Date anneeUniversitaire;
