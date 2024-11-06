@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-alpine
 
 # Définir les arguments pour Nexus
-ARG NEXUS_URL=http://localhost:8081/repository/maven-releases/
+ARG NEXUS_URL=http://192.168.149.129:8081/repository/maven-releases/
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
 ARG VERSION=5.0.0
@@ -15,7 +15,7 @@ ARG NEXUS_PASSWORD=ryl123
 # Installer curl et télécharger le fichier JAR depuis Nexus avec authentification
 RUN apk add --no-cache curl iputils && \
     echo "Test de la connexion directe à Nexus..." && \
-    ping -c 4 localhost || { echo "Impossible d'atteindre Nexus"; exit 1; } && \
+    ping -c 4 192.168.149.129 || { echo "Impossible d'atteindre Nexus"; exit 1; } && \
     echo "Vérification du chemin du dépôt..." && \
     curl -I "${NEXUS_URL}$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/" || { echo "Chemin du dépôt non trouvé"; exit 1; } && \
     echo "Téléchargement du JAR depuis Nexus..." && \
