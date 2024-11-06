@@ -2,7 +2,7 @@
 FROM openjdk:17-jdk-alpine
 
 # Définir les arguments pour Nexus
-ARG NEXUS_URL=http://192.168.137.168::8081/repository/maven-releases/
+ARG NEXUS_URL=http://192.168.137.168:8081/repository/maven-releases/
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
 ARG VERSION=5.0.0
