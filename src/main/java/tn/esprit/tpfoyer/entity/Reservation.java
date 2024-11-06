@@ -18,6 +18,7 @@ import java.util.Set;
 public class Reservation {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     String idReservation;
 
 
