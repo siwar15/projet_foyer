@@ -8,7 +8,7 @@ WORKDIR /app
 ARG NEXUS_URL=http://nexus:8081/repository/maven-releases/
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
-ARG VERSION=release-khchina
+ARG VERSION=release-latest
 ARG JAR_NAME=${ARTIFACT_ID}-${VERSION}.jar
 
 # Set up Nexus credentials if needed
@@ -32,4 +32,4 @@ RUN ls -l | grep "${JAR_NAME}" || { echo "JAR file not found"; exit 1; }
 EXPOSE 8089
 
 # Set the command to run the application (using shell form for variable expansion)
-CMD ["java", "-jar", "/app/tp-foyer-release-khchina.jar"]
+CMD ["java", "-jar", "/app/tp-foyer-release-latest.jar"]
