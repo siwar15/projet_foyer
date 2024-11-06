@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Define arguments for Nexus
-ARG NEXUS_URL=http://172.20.0.2:8081/repository/maven-releases/
+ARG NEXUS_URL=http://nexus:8081/repository/maven-releases/
 ARG GROUP_ID=tn.esprit
 ARG ARTIFACT_ID=tp-foyer
 ARG VERSION=release-khchina
@@ -18,7 +18,7 @@ ARG NEXUS_PASSWORD
 # Install curl and download the JAR file from Nexus
 RUN apt-get update && apt-get install -y curl iputils-ping && \
     echo "Testing direct connection to Nexus..." && \
-    ping -c 4 172.20.0.2 || { echo "Unable to reach Nexus"; exit 1; } && \
+    ping -c 4 nexus || { echo "Unable to reach Nexus"; exit 1; } && \
     curl -I "${NEXUS_URL}" || { echo "Unable to reach Nexus"; exit 1; } && \
     echo "Checking repository path..." && \
     curl -I "${NEXUS_URL}$(echo $GROUP_ID | tr '.' '/')/$ARTIFACT_ID/$VERSION/" || { echo "Repository path not found"; exit 1; } && \
