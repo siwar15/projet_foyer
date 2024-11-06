@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: mouadhs/reservation_management:vX
+    image: mouadhs/reservation_management:vXYZ
     restart: on-failure
     networks:
       - jenkins-sonarqube-network
