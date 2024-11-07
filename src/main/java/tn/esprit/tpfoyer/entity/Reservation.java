@@ -20,8 +20,9 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     Integer idReservation;
+    String name;
 
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     Date anneeUniversitaire;
     boolean estValide;
 
