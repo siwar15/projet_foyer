@@ -1,20 +1,19 @@
 version: "3.8"
-
 services:
   mysqldb:
     image: mysql:5.7
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=
+      - MYSQL_ROOT_PASSWORD=yourpassword
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=tp_foyer_db
       - innodb_force_recovery=1
     ports:
       - 3306:3306
+    networks:
+      - monitoring_network
     volumes:
       - db:/var/lib/mysql
-    networks:
-      - monitoring_network  # Attribution du réseau personnalisé
 
   tp-foyer-app:
     depends_on:
@@ -27,14 +26,14 @@ services:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url": "jdbc:mysql://mysqldb:3306/tp_foyer_db?createDatabaseIfNotExist=true",
         "spring.datasource.username": "root",
-        "spring.datasource.password": "",
+        "spring.datasource.password": "yourpassword",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQLDialect",
         "spring.jpa.hibernate.ddl-auto": "update"
       }'
     stdin_open: true
     tty: true
     networks:
-      - monitoring_network  # Attribution du réseau personnalisé
+      - monitoring_network
 
   mysqld_exporter:
     image: prom/mysqld-exporter:latest
@@ -45,16 +44,16 @@ services:
     depends_on:
       - mysqldb
     networks:
-      - monitoring_network  # Attribution du réseau personnalisé
+      - monitoring_network
 
   prometheus:
     image: prom/prometheus
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Fichier de config Prometheus à créer
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Votre fichier de config
     ports:
-      - "9090:9090"
+      - "9090:9090"  # Le même port que celui sur lequel Prometheus fonctionne déjà
     networks:
-      - monitoring_network  # Attribution du réseau personnalisé
+      - monitoring_network
 
   grafana:
     image: grafana/grafana
@@ -63,11 +62,11 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - monitoring_network  # Attribution du réseau personnalisé
+      - monitoring_network
+
+networks:
+  monitoring_network:
+    driver: bridge
 
 volumes:
   db:
-
-networks:
-  monitoring_network:  # Définition du réseau personnalisé
-    driver: bridge  # Utilisation du driver de réseau par défaut (bridge)
