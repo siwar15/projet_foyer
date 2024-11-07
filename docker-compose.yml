@@ -17,11 +17,7 @@ services:
     depends_on:
       - mysqldb
     image: ilefchammem00/tp-foyer:5.0.0
-    build:
-      context: .
-      args:
-        NEXUS_USERNAME: ${NEXUS_USERNAME}
-        NEXUS_PASSWORD: ${NEXUS_PASSWORD}
+    #build : ./
     restart: on-failure
     ports:
       - 8089:8089
