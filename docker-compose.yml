@@ -43,6 +43,18 @@ services:
       - "3001:3000"  # Map host port 3001 to container port 3000
     depends_on:
       - backend
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    networks:
+      - jenkins-sonarqube-network
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
 
 networks:
   jenkins-sonarqube-network:
