@@ -9,7 +9,6 @@ services:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=tp_foyer_db
       - innodb_force_recovery=1
-
     ports:
       - 3306:3306
     volumes:
@@ -32,6 +31,17 @@ services:
       }'
     stdin_open: true
     tty: true
+
+  mysqld-exporter:
+    image: quay.io/prometheus/mysqld-exporter
+    container_name: mysqld-exporter
+    restart: unless-stopped
+    environment:
+      DATA_SOURCE_NAME: "root:@(mysqldb:3306)/"
+    depends_on:
+      - mysqldb
+    ports:
+      - 9104:9104
 
 volumes:
   db:
