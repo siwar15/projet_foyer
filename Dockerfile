@@ -27,4 +27,4 @@ RUN ls -l | grep "${JAR_NAME}" || { echo "Fichier JAR non trouvé"; exit 1; }
 EXPOSE 8089
 
 # Définir la commande d'entrée
-CMD ["java", "-jar", "${JAR_NAME}"]
+CMD ["java", "-jar", "/app/tp-foyer-5.0.0.jar"]
