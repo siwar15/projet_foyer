@@ -1,17 +1,17 @@
 version: "3.8"
+
 services:
   mysqldb:
     image: mysql:5.7
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=yourpassword
+      - MYSQL_ROOT_PASSWORD=
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=tp_foyer_db
       - innodb_force_recovery=1
+
     ports:
       - 3306:3306
-    networks:
-      - monitoring_network
     volumes:
       - db:/var/lib/mysql
 
@@ -26,47 +26,12 @@ services:
       SPRING_APPLICATION_JSON: '{
         "spring.datasource.url": "jdbc:mysql://mysqldb:3306/tp_foyer_db?createDatabaseIfNotExist=true",
         "spring.datasource.username": "root",
-        "spring.datasource.password": "yourpassword",
+        "spring.datasource.password": "",
         "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQLDialect",
         "spring.jpa.hibernate.ddl-auto": "update"
       }'
     stdin_open: true
     tty: true
-    networks:
-      - monitoring_network
-
-  mysqld_exporter:
-    image: prom/mysqld-exporter:latest
-    environment:
-      - DATA_SOURCE_NAME=root:@tcp(mysqldb:3306)  # Connexion à MySQL sans mot de passe
-    ports:
-      - "9104:9104"  # Port sur lequel les métriques sont exposées
-    depends_on:
-      - mysqldb
-    networks:
-      - monitoring_network
-
-  prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Votre fichier de config
-    ports:
-      - "9091:9090"  # Le même port que celui sur lequel Prometheus fonctionne déjà
-    networks:
-      - monitoring_network
-
-  grafana:
-    image: grafana/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=grafana  # Définir le mot de passe admin de Grafana
-    ports:
-      - "3000:3000"
-    networks:
-      - monitoring_network
-
-networks:
-  monitoring_network:
-    driver: bridge
 
 volumes:
   db:
