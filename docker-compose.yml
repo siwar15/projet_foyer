@@ -51,7 +51,7 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Votre fichier de config
     ports:
-      - "9090:9090"  # Le même port que celui sur lequel Prometheus fonctionne déjà
+      - "9091:9090"  # Le même port que celui sur lequel Prometheus fonctionne déjà
     networks:
       - monitoring_network
 
