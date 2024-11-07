@@ -18,7 +18,7 @@ services:
   tp-foyer-app:
     depends_on:
       - mysqldb
-    image: raniabrahmi/tp-foyer:1.0.0
+    image: raniabrahmi/tp-foyer:latest
     restart: on-failure
     ports:
       - 8089:8089
