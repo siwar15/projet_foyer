@@ -5,7 +5,7 @@ This repository includes a `Jenkinsfile` to automate the CI/CD pipeline for the 
 ### Stage View of the Pipeline
 Below is a visual representation of the Jenkins pipeline stages:
 
-![Jenkins Pipeline Stage View](https://github.com/siwar15/projet_foyer/new/reservation-managemen/JenkinsStageView.png)
+![Jenkins Pipeline Stage View](https://github.com/siwar15/projet_foyer/new/reservation-management/JenkinsStageView.png)
 
 **Pipeline Features:**
 - Clones the backend and frontend repositories.
